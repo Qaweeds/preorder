@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Preorder;
 
 use App\Http\Controllers\Controller;
 use App\Models\Preorder\Product;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MainController extends Controller

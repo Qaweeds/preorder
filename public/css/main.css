@@ -204,6 +204,7 @@ p {
 
 .new-comment button {
     float: right;
+    margin-top: 5px;
 }
 
 .comment-body h5 {
