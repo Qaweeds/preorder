@@ -1,0 +1,43 @@
++--------+----------+------------------+------------------+---------------------------------------------------------------------+------------+
+| Domain | Method   | URI              | Name             | Action                                                              | Middleware |
++--------+----------+------------------+------------------+---------------------------------------------------------------------+------------+
+|        | GET|HEAD | /                | preorder         | App\Http\Controllers\PreorderController@index                       | web        |
+|        |          |                  |                  |                                                                     | auth       |
+|        | POST     | /                | preorder.filter  | App\Http\Controllers\PreorderController@filter                      | web        |
+|        |          |                  |                  |                                                                     | auth       |
+|        | GET|HEAD | api/user         |                  | Closure                                                             | api        |
+|        |          |                  |                  |                                                                     | auth:api   |
+|        | POST     | create           | order.store      | App\Http\Controllers\PreorderController@store                       | web        |
+|        |          |                  |                  |                                                                     | auth       |
+|        | GET|HEAD | create           | order.create     | App\Http\Controllers\PreorderController@create                      | web        |
+|        |          |                  |                  |                                                                     | auth       |
+|        | GET|HEAD | delete/{id}      | order.delete     | App\Http\Controllers\PreorderController@delete                      | web        |
+|        |          |                  |                  |                                                                     | auth       |
+|        | GET|HEAD | edit/{id}        | order.edit       | App\Http\Controllers\PreorderController@edit                        | web        |
+|        |          |                  |                  |                                                                     | auth       |
+|        | GET|HEAD | getcatbygroup    | get.cat          | App\Http\Controllers\PreorderController@getCatByGroup               | web        |
+|        |          |                  |                  |                                                                     | auth       |
+|        | GET|HEAD | home             | home             | App\Http\Controllers\HomeController@index                           | web        |
+|        |          |                  |                  |                                                                     | auth       |
+|        | POST     | login            |                  | App\Http\Controllers\Auth\LoginController@login                     | web        |
+|        |          |                  |                  |                                                                     | guest      |
+|        | GET|HEAD | login            | login            | App\Http\Controllers\Auth\LoginController@showLoginForm             | web        |
+|        |          |                  |                  |                                                                     | guest      |
+|        | POST     | logout           | logout           | App\Http\Controllers\Auth\LoginController@logout                    | web        |
+|        | POST     | password/confirm |                  | App\Http\Controllers\Auth\ConfirmPasswordController@confirm         | web        |
+|        |          |                  |                  |                                                                     | auth       |
+|        | GET|HEAD | password/confirm | password.confirm | App\Http\Controllers\Auth\ConfirmPasswordController@showConfirmForm | web        |
+|        |          |                  |                  |                                                                     | auth       |
+|        | GET|HEAD | raiting          | order.vote       | App\Http\Controllers\PreorderController@vote                        | web        |
+|        |          |                  |                  |                                                                     | auth       |
+|        | GET|HEAD | reserve          | reserve          | App\Http\Controllers\PreorderController@reserve                     | web        |
+|        |          |                  |                  |                                                                     | auth       |
+|        | GET|HEAD | show/{id}        | show             | App\Http\Controllers\PreorderController@showProduct                 | web        |
+|        |          |                  |                  |                                                                     | auth       |
+|        | POST     | show/{id}        |                  | App\Http\Controllers\PreorderController@addComment                  | web        |
+|        |          |                  |                  |                                                                     | auth       |
+|        | GET|HEAD | success/{id}     | order.success    | App\Http\Controllers\PreorderController@success                     | web        |
+|        |          |                  |                  |                                                                     | auth       |
+|        | POST     | update/{id}      | order.update     | App\Http\Controllers\PreorderController@update                      | web        |
+|        |          |                  |                  |                                                                     | auth       |
++--------+----------+------------------+------------------+---------------------------------------------------------------------+------------+
