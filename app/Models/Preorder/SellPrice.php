@@ -18,4 +18,14 @@ class SellPrice extends Model
             'gg',
             'value',
         ];
+
+    public static function dataForSetup()
+    {
+        $channel = self::query()->distinct()->pluck('channel')->toArray();
+        $country = self::query()->distinct()->pluck('country')->toArray();
+        $season = self::query()->distinct()->pluck('season')->toArray();
+        $goods_group = self::query()->distinct()->pluck('gg')->toArray();
+
+        return compact('channel', 'country', 'season', 'goods_group');
+    }
 }

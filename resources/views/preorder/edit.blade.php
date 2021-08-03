@@ -9,15 +9,8 @@
 
         <div class="container">
             <div class="col-md-12 col-lg-6 offset-lg-3">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+
+                @include('layouts.include.result_message')
 
                 <form action="{{route('edit.store', $item->id)}}" method="post" enctype="multipart/form-data">
                     @csrf

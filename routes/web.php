@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 Auth::routes(['register' => false, 'reset' => false]);
 
-Route::group(['middleware' => 'auth',], function () {
+Route::group(['middleware' => 'auth'], function () {
     Route::namespace('Preorder')->group(function () {
         Route::get('/', 'MainController@index')->name('main.index');
         Route::post('/', 'MainController@filter')->name('main.filter');
@@ -40,4 +40,16 @@ Route::group(['middleware' => 'auth',], function () {
     });
 
     Route::get('/test', 'Test');
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::namespace('Preorder\admin')->prefix('admin')->group(function () {
+        Route::get('/', 'SetupController@index')->name('admin.index');
+        Route::get('/selfpricevalue', 'SelfPriceController@getSelfPriceValue');
+        Route::post('/selfpricestore', 'SelfPriceController@store')->name('selfprice.store');
+
+        Route::get('/sellpricevalue', 'SellPriceController@getSellPriceValue');
+        Route::post('/sellpricestore', 'SellPriceController@store')->name('sellprice.store');
+
+    });
 });

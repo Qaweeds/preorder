@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Preorder;
 
-use App\Http\Controllers\Controller;
 
 use App\Http\Requests\FilterRequest;
 use App\Models\Preorder\Product;
 use Illuminate\Support\Facades\Auth;
 
-class MainController extends Controller
+class MainController extends BaseController
 {
     public function index()
     {

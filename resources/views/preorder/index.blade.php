@@ -5,13 +5,9 @@
         <div id="alert"></div>
         <div id="success"></div>
         <div class="container">
-            @if(Session::has('success'))
-                <div class="alert alert-success card-wrap">
-                    <div class="alert-heading">
-                        {{ Session::get('success') }}
-                    </div>
-                </div>
-            @endif
+
+            @include('layouts.include.result_message')
+
             @foreach($items as $item)
                 <div class="card card-wrap @if(!is_null($item->ordered)) inactive @endif " id="card-{{$item->id}}">
                     <div class="card-body p-0">
