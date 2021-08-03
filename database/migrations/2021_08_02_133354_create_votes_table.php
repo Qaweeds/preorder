@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDeliveryTimesTable extends Migration
+class CreateVotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateDeliveryTimesTable extends Migration
      */
     public function up()
     {
-        Schema::create('delivery_times', function (Blueprint $table) {
-            $table->string('country', 30);
-            $table->string('delivery', 20);
-            $table->integer('days');
+        Schema::create('votes', function (Blueprint $table) {
+            $table->id();
+            $table->integer('user_id');
+            $table->integer('product_id');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +28,6 @@ class CreateDeliveryTimesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('delivery_times');
+        Schema::dropIfExists('votes');
     }
 }

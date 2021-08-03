@@ -18,9 +18,10 @@ $(document).ready(function () {
             url: cat_route,
             data: data,
             success: function (data) {
-                var ops;
-                data.forEach(el => ops += '<option value="'+el+'">' +el+'</option>');
-                $('#category').html(ops);
+                var ops = '';
+                data.forEach(el => ops += '<option value="' + el + '">' + el + '</option>');
+                console.log(ops);
+                $('.category').html(ops);
             },
             error: function () {
                 console.log('e')

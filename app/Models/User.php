@@ -33,7 +33,7 @@ class User extends Authenticatable
 
     public function can_decide()
     {
-        return $this->role == 'Директор';
+        return $this->role == 'Директор' || $this->role == 'Админ';
     }
 
     public function admin()

@@ -5,9 +5,9 @@ namespace App\Models\Preorder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DeliveryTime extends Model
+class Votes extends Model
 {
     use HasFactory;
-    public $timestamps = false;
-    protected $fillable = ['value'];
+
+    protected $fillable = ['user_id', 'product_id'];
 }

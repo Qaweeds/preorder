@@ -31,6 +31,7 @@ class CreateProductsTable extends Migration
             $table->integer('votes_count')->nullable();
             $table->decimal('rating_total')->nullable();
             $table->string('channel');
+            $table->boolean('ordered')->nullable()->default(null);
             $table->softDeletes();
             $table->timestamps();
 

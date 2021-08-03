@@ -4,6 +4,7 @@ namespace App\Models\Preorder;
 
 use App\Models\Category;
 use App\Models\Country;
+use App\Models\Exchange;
 use App\Models\Goodsgroup;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -82,6 +83,8 @@ class Product extends Model
 
     public function sellprice()
     {
+        $exchange = Exchange::query()->where('currency', $this->country->currency)->value('value');
+
         if (Auth::user()->can_see_all_prices()) {
             $prices = array();
             $query = SellPrice::query()->toBase()
@@ -91,7 +94,7 @@ class Product extends Model
                 ->get(['channel', 'value']);
 
             foreach ($query as $q) {
-                $prices[$q->channel] = round($this->price + ($this->price * $q->value / 100), 1);
+                $prices[$q->channel] = round(($this->price + ($this->price * $q->value / 100)) * $exchange, 1);
             }
             return $prices;
         } else {
@@ -101,7 +104,7 @@ class Product extends Model
                 ->where('season', $this->season)
                 ->where('channel', Auth::user()->role)
                 ->value('value');
-            return round($this->price + ($this->price * $query / 100), 1);
+            return round(($this->price + ($this->price * $query / 100)) * $exchange, 1);
         }
     }
 

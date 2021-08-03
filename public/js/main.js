@@ -1,5 +1,27 @@
 $(document).ready(function () {
 
+    inactive();
+
+    function current_date() {
+        let d = new Date();
+
+        let month = d.getMonth() + 1;
+        let day = d.getDate();
+
+        return d.getFullYear() + '-' +
+            (month < 10 ? '0' : '') + month + '-' +
+            (day < 10 ? '0' : '') + day;
+    }
+
+    function newComment(author, value) {
+        let comment = '<div class="comment-body">' +
+            '<h5>' + author + '</h5>' +
+            '<small>' + current_date() + '</small>' +
+            '<p>' + value + '</p>' +
+            '</div>';
+        return comment;
+    }
+
     $('.img-container').click(function () {
 
         if ($(this).hasClass('full')) {
@@ -35,7 +57,11 @@ $(document).ready(function () {
                 $(item).find('p').html(response);
             },
             error: function () {
-                console.log('e')
+                let message = '<span> Вы уже голосовали </span>';
+                $('#alert').append(message);
+                setTimeout(function () {
+                    $('#alert span').remove();
+                }, 5000);
             },
             dataType: 'html'
         })
@@ -89,25 +115,50 @@ $(document).ready(function () {
 
     $('.dropdown-toggle').click(function () {
         $(this).next().slideToggle(0);
-    })
+    });
 
-    function current_date() {
-        let d = new Date();
+    $('.order-success').click(function () {
+        if (confirm('Заказать?')) {
+            let elem = this;
+            let url = window.location + "success/?id=" + this.getAttribute('name');
+            console.log(url);
+            $.ajax({
+                url: url,
+                success: function (res) {
+                    console.log(res);
+                    $('body').find(res).addClass('inactive');
+                    inactive();
+                },
+                error: function (res) {
+                },
+                dataType: 'html'
+            });
+        }
+    });
 
-        let month = d.getMonth() + 1;
-        let day = d.getDate();
+    $('.order-denied').click(function () {
+        if (confirm('Отказаться?')) {
+            let elem = this;
+            let url = window.location + "denied/?id=" + this.getAttribute('name');
+            console.log(url);
+            $.ajax({
+                url: url,
+                success: function (res) {
+                    console.log(res);
+                    $('body').find(res).addClass('inactive');
+                    inactive();
+                },
+                error: function (res) {
+                },
+                dataType: 'html'
+            });
+        }
+    });
 
-        return d.getFullYear() + '-' +
-            (month < 10 ? '0' : '') + month + '-' +
-            (day < 10 ? '0' : '') + day;
-    }
-
-    function newComment(author, value) {
-        let comment = '<div class="comment-body">' +
-            '<h5>' + author + '</h5>' +
-            '<small>' + current_date() + '</small>' +
-            '<p>' + value + '</p>' +
-            '</div>';
-        return comment;
+    function inactive() {
+        $('.inactive *').click(function (event) {
+            event.preventDefault();
+        }).attr('disabled', true);
+        $('.inactive button').off();
     }
 });

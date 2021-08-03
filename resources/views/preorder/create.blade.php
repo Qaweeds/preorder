@@ -70,7 +70,7 @@
 
                     <div class="form-group">
                         <label for="group">Категория</label>
-                        <select name="category" id="category" class="form-control">
+                        <select id="category" name="category" class="form-control category">
 
                         </select>
                     </div>

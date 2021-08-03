@@ -13,7 +13,7 @@
                 </div>
             @endif
             @foreach($items as $item)
-                <div class="card card-wrap text-center" id="card-{{$item->id}}">
+                <div class="card card-wrap @if(!is_null($item->ordered)) inactive @endif " id="card-{{$item->id}}">
                     <div class="card-body p-0">
                         <div class="img-container">
                             @foreach(explode(',', $item->photo) as $pic)
@@ -36,7 +36,12 @@
                                     <span>{{$item->user->name}}</span>
                                 </div>
                                 <div class="country">
-                                    <span>{{$item->country->name}}</span>
+                                    <span>{{$item->country->name}},</span>
+                                    @if($item->ready_or_not == 1)
+                                        <span>Готовое</span>
+                                    @else
+                                        <span>Заказное</span>
+                                    @endif
                                 </div>
                                 <div class="date">
                                     <span>{{$item->date_start_sale}}</span>
@@ -50,14 +55,16 @@
                                 </div>
                                 <div class="order">
                                     @if(count($item->reserve))
-                                        <div class="reserved dropdown-toggle">
+                                        <div class="reserved @if($user->id == $item->user_id || $user->can_decide()) dropdown-toggle @endif ">
                                             <span>Заказали: {{count($item->reserve)}} чел.</span>
                                         </div>
-                                        <div class="reserved-info">
-                                            @foreach($item->reserve as $reserve)
-                                                <p>{{$reserve->user->name}}: {{$reserve->quantity}} шт.</p>
-                                            @endforeach
-                                        </div>
+                                        @if($user->id == $item->user_id || $user->can_decide())
+                                            <div class="reserved-info">
+                                                @foreach($item->reserve as $reserve)
+                                                    <p>{{$reserve->user->name}}: {{$reserve->quantity}} шт.</p>
+                                                @endforeach
+                                            </div>
+                                        @endif
                                     @endif
                                 </div>
                             </div>
@@ -123,12 +130,10 @@
                                     </span>
                                 @endif
                             </button>
-                            @if($item->owner())
-                                <a href="{{route('edit.index', $item->id)}}" class="btn btn-warning admin-button">Редактирование</a>
-                            @endif
                             @if($item->owner() or $user->can_decide())
-                                <button class="btn btn-success admin-button">В Заказ</button>
-                                <button class="btn btn-danger btn-success admin-button">Октаз</button>
+                                <a href="{{route('edit.index', $item->id)}}" class="btn btn-warning admin-button">Редактирование</a>
+                                <button name="{{$item->id}}" class="btn btn-success admin-button order-success">В Заказ</button>
+                                <button name="{{$item->id}}" class="btn btn-danger btn-success admin-button order-denied">Октаз</button>
                             @endif
                         </div>
                         <div class="comments">

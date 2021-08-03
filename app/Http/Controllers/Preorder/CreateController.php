@@ -8,7 +8,9 @@ use App\Http\Requests\NewProductRequest;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\Goodsgroup;
+use App\Models\Preorder\DeliveryTime;
 use App\Models\Preorder\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -17,7 +19,7 @@ class CreateController extends Controller
 {
     public function index()
     {
-//        if(Auth::user()->role != 'Закупка') return back();
+        if(Auth::user()->role != 'Закупка' && !Auth::user()->can_decide()) return back();
         $data['countries'] = Country::query()->toBase()->get();
         $data['groups'] = Goodsgroup::query()->toBase()->get();
         return view('preorder.create', $data);
@@ -53,7 +55,7 @@ class CreateController extends Controller
         $product->ready_or_not = $request->ready_or_not;
         $product->delivery = $request->delivery;
         $product->season = $request->season;
-        $product->date_start_sale = now();
+        $product->date_start_sale = $this->dateCalculator($request->country, $request->delivery, $request->date_start_sale);
         $product->price = $request->price;
         $product->comment = $request->comment;
         $product->channel = $channel;
@@ -63,4 +65,13 @@ class CreateController extends Controller
             ->withCookie(cookie('country', $request->country, 60 * 24))
             ->with('success', 'Успешно добавлено');
     }
+
+    private function dateCalculator($country_id, $delivery, $maketime)
+    {
+        $days_to_delivery = DeliveryTime::query()->where('country_id', $country_id)->where('delivery', $delivery)->value('days');
+        if (!empty($maketime)) return Carbon::parse($maketime)->addDays($days_to_delivery);
+        else return Carbon::now()->addDays($days_to_delivery);
+    }
+
+
 }

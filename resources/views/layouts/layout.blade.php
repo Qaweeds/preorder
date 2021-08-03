@@ -17,24 +17,17 @@
         <a href="{{route('main.index')}}"><h1>Предзаказ</h1></a>
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            @if(\Illuminate\Support\Facades\Auth::user()->admin())
+            @if(auth()->user()->admin())
                 <li><a href="" class="nav-link px-2 link-secondary">Настройки</a></li>
             @endif
-            @if(\Illuminate\Support\Facades\Auth::user()->role == 'Закупка')
+            @if(auth()->user()->role == 'Закупка' || auth()->user()->can_decide())
                 <li><a href="{{route('create.index')}}" class="nav-link px-2 link-secondary">Создать</a></li>
             @endif
             <li>
                 <button class="btn filter-button">Фильтр</button>
             </li>
         </ul>
-        <div class="filter">
-            <input type="text" class="form-control" disabled value="lorem">
-            <input type="text" class="form-control" disabled value="lorem">
-            <input type="text" class="form-control" disabled value="lorem">
-            <input type="text" class="form-control" disabled value="lorem">
-            <input type="text" class="form-control" disabled value="lorem">
-            <input type="text" class="form-control" disabled value="lorem">
-        </div>
+        @include('layouts.include.filter_form')
     </header>
 </div>
 <body>

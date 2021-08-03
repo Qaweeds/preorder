@@ -24,6 +24,7 @@ Auth::routes(['register' => false, 'reset' => false]);
 Route::group(['middleware' => 'auth',], function () {
     Route::namespace('Preorder')->group(function () {
         Route::get('/', 'MainController@index')->name('main.index');
+        Route::post('/', 'MainController@filter')->name('main.filter');
         Route::get('/create', 'CreateController@index')->name('create.index');
         Route::post('/create', 'CreateController@store')->name('create.store');
         Route::get('/edit/{id}', 'EditController@index')->name('edit.index');
@@ -31,6 +32,8 @@ Route::group(['middleware' => 'auth',], function () {
         Route::get('/vote', 'RatingController')->name('rating.vote');
         Route::get('/comment', 'CommentController')->name('comment');
         Route::get('/reserve', 'ReserveController')->name('reserve');
+        Route::get('/success', 'OrderController@success')->name('order.reserve');
+        Route::get('/denied', 'OrderController@denied')->name('order.reserve');
 
         Route::get('/getcatbygroup', 'CreateController@getCatByGroup')->name('create.cat');
 
