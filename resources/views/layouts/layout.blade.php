@@ -18,7 +18,7 @@
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             @if(auth()->user()->admin())
-                <li><a href="" class="nav-link px-2 link-secondary">Настройки</a></li>
+                <li><a href="{{route('admin.index')}}" class="nav-link px-2 link-secondary">Настройки</a></li>
             @endif
             @if(auth()->user()->role == 'Закупка' || auth()->user()->can_decide())
                 <li><a href="{{route('create.index')}}" class="nav-link px-2 link-secondary">Создать</a></li>

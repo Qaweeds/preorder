@@ -11,7 +11,7 @@ use App\Models\Preorder\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-class EditController extends Controller
+class EditController extends BaseController
 {
     public function index($id)
     {

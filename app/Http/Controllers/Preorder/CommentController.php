@@ -7,7 +7,7 @@ use App\Http\Requests\CommentRequest;
 use App\Models\Preorder\Comments;
 use Illuminate\Support\Facades\Auth;
 
-class CommentController extends Controller
+class CommentController extends BaseController
 {
     public function __invoke(CommentRequest $request)
     {

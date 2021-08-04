@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 
 
-class RatingController extends Controller
+class RatingController extends BaseController
 {
     public function __invoke(VoteRequest $request)
     {

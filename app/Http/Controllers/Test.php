@@ -47,7 +47,7 @@ class Test extends Controller
     public function __invoke()
     {
         $currencies = Exchange::query()->pluck('currency');
-
+        dd('q');
         foreach ($currencies as $code) {
             Exchange::query()->where('currency', $code)->update(['value' => (float)$this->getCurrency($code)]);
         }

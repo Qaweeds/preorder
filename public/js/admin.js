@@ -39,4 +39,24 @@ $(document).ready(function () {
         }
     });
 
+    $('#delivery_time-form').change(function () {
+        if (event.target.tagName !== 'INPUT') {
+            data = $(this).serializeArray();
+            if (data.length === 4) {
+                $.ajax({
+                    url: window.location.href + '/deliverytimevalue',
+                    data: data,
+                    success: function (data) {
+                        console.log(data)
+                        $('#delivery_time-form #delivery_time-val').val(data);
+                    },
+                    error: function () {
+                        console.log('e');
+                    },
+                    dataType: 'html'
+                })
+            }
+        }
+    });
+
 });

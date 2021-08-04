@@ -112,6 +112,40 @@
                 </div>
             </form>
         </div>
+
+        <div class="form-block" id="delivery_time-block">
+            <h4>Время доставки</h4>
+            <form action="{{route('delivery_time.store')}}" method="post" id="delivery_time-form">
+                @csrf
+                <div class="select-wrap">
+                    <div class="select-block w-45">
+                        <label for="delivery_time-country">Страна</label>
+                        <select class="form-control" name="delivery_time-country" id="delivery_time-country">
+                            <option value="" disabled selected>-------</option>
+                            @foreach($deliveryTime['country'] as $o)
+                                <option value="{{$o->country_id}}">{{$o->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="select-block w-45">
+                        <label for="delivery_time-delivery">Транспорт</label>
+                        <select class="form-control" name="delivery_time-delivery" id="delivery_time-delivery">
+                            <option value="" disabled selected>-------</option>
+                            @foreach($deliveryTime['delivery'] as $o)
+                                <option value="{{$o}}">{{$o}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-wrap">
+                    <input type="submit" class="btn btn-primary" value="Сохранить">
+                    <input type="number" name="delivery_time-val" class="form-control" id="delivery_time-val">
+                </div>
+            </form>
+        </div>
+
     </div>
 @endsection
 

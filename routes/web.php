@@ -36,13 +36,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/denied', 'OrderController@denied')->name('order.reserve');
 
         Route::get('/getcatbygroup', 'CreateController@getCatByGroup')->name('create.cat');
-
     });
-
-    Route::get('/test', 'Test');
 });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'admin'], function () {
     Route::namespace('Preorder\admin')->prefix('admin')->group(function () {
         Route::get('/', 'SetupController@index')->name('admin.index');
         Route::get('/selfpricevalue', 'SelfPriceController@getSelfPriceValue');
@@ -51,5 +48,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/sellpricevalue', 'SellPriceController@getSellPriceValue');
         Route::post('/sellpricestore', 'SellPriceController@store')->name('sellprice.store');
 
+        Route::get('deliverytimevalue', 'DeliveryTimeController@getValue');
+        Route::post('deliverytimestore', 'DeliveryTimeController@store')->name('delivery_time.store');
+
+
     });
+
+    Route::get('/test', 'Test');
 });

@@ -96,6 +96,7 @@ $(document).ready(function () {
             url: reserve_route,
             data: data,
             success: function (response) {
+                console.log(response)
                 let message = '<span> Резерв добавлен </span>';
                 $('#success').append(message);
                 setTimeout(function () {
@@ -140,11 +141,9 @@ $(document).ready(function () {
         if (confirm('Отказаться?')) {
             let elem = this;
             let url = window.location + "denied/?id=" + this.getAttribute('name');
-            console.log(url);
             $.ajax({
                 url: url,
                 success: function (res) {
-                    console.log(res);
                     $('body').find(res).addClass('inactive');
                     inactive();
                 },

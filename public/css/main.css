@@ -45,7 +45,7 @@ p {
 
 .filter {
     width: 100%;
-    max-width: 500px;
+    max-width: 450px;
     margin: 0 auto;
     display: none;
     position: absolute;
@@ -130,15 +130,17 @@ p {
 }
 
 .reserved-info {
+    margin: 0 auto;
     padding: 0 5px;
     display: none;
     background-color: #ececec;
     position: absolute;
     z-index: 2;
+    font-size: 12px;
     border-radius: 10px;
-    max-height: 200px;
+    max-height: 300px;
     overflow-y: auto;
-    margin-left: -20px;
+    max-width: 200px;
 }
 
 .reserved-info p {

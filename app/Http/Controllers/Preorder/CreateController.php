@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-class CreateController extends Controller
+class CreateController extends BaseController
 {
     public function index()
     {

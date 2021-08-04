@@ -7,7 +7,7 @@ use App\Http\Requests\OrderRequest;
 use App\Models\Preorder\Product;
 use Illuminate\Support\Facades\Auth;
 
-class OrderController extends Controller
+class OrderController extends BaseController
 {
     public function success(OrderRequest $r)
     {
