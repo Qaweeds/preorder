@@ -15,14 +15,16 @@
 <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
         <a href="{{route('main.index')}}"><h1>Предзаказ</h1></a>
-
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             @if(auth()->user()->admin())
                 <li><a href="{{route('admin.index')}}" class="nav-link px-2 link-secondary">Настройки</a></li>
             @endif
+
             @if(auth()->user()->role == 'Закупка' || auth()->user()->can_decide())
                 <li><a href="{{route('create.index')}}" class="nav-link px-2 link-secondary">Создать</a></li>
             @endif
+
+{{--            <li><a href="{{route('logout')}}" class="nav-link px-2 link-secondary">Выйти</a></li>--}}
             <li>
                 <button class="btn filter-button">Фильтр</button>
             </li>
