@@ -58,7 +58,7 @@ $(document).ready(function () {
             },
             error: function () {
                 let message = '<span> Вы уже голосовали </span>';
-                $('#alert').append(message);
+                $('#alert').html(message);
                 setTimeout(function () {
                     $('#alert span').remove();
                 }, 5000);
