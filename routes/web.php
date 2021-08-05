@@ -18,7 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('logout', function () {
+     \auth()->logout();
+    return redirect('/');
+})->name('logout');
 Auth::routes(['register' => false, 'reset' => false]);
 
 Route::group(['middleware' => 'auth'], function () {
