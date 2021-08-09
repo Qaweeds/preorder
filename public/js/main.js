@@ -41,7 +41,7 @@ $(document).ready(function () {
         $(this).parent().next('.comments').toggle(600);
     });
     $('.admin-button-reserve').click(function () {
-        $(this).next().toggle(200);
+        $(this).next().slideToggle(200);
     });
     $('.filter-button').click(function () {
         $('.filter').slideToggle(200);
