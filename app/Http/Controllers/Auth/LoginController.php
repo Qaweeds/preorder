@@ -74,9 +74,9 @@ class LoginController extends Controller
 
         if (!$group) return false;
 
-        $check = User::query()->where('login', $login)->first();
+        $user = User::query()->where('login', $login)->first();
 
-        if (is_null($check)) {
+        if (is_null($user)) {
             User::create(
                 [
                     'name' => $manager->name[0],
@@ -85,9 +85,12 @@ class LoginController extends Controller
                     'role' => $group,
                 ]
             );
-            $check = User::query()->where('login', $login)->first();
+            $user = User::query()->where('login', $login)->first();
+        } else {
+            $user->role = $group;
+            $user->save();
         }
-        Auth::login($check, $remember);
+        Auth::login($user, $remember);
 
 
         return $this->redirectTo;

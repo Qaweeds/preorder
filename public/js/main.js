@@ -75,11 +75,12 @@ $(document).ready(function () {
             url: comment_route,
             data: data,
             success: function (response) {
+                obj.prev('textarea').val('');
                 obj.parents('.new-comment').next().prepend(newComment(user, data[1]['value']));
             },
             error: function (response) {
                 let message = '<span> Сообщение не должно быть пустым </span>';
-                $('#alert').append(message);
+                $('#alert').html(message);
                 setTimeout(function () {
                     $('#alert span').remove();
                 }, 5000);
@@ -98,14 +99,14 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response)
                 let message = '<span> Резерв добавлен </span>';
-                $('#success').append(message);
+                $('#success').html(message);
                 setTimeout(function () {
                     $('#success span').remove();
                 }, 5000);
             },
             error: function () {
                 let message = '<span> Количество не может быть отрицательным </span>';
-                $('#alert').append(message);
+                $('#alert').html(message);
                 setTimeout(function () {
                     $('#alert span').remove();
                 }, 5000);
