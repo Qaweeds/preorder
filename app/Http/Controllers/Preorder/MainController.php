@@ -11,7 +11,6 @@ class MainController extends BaseController
 {
     public function index()
     {
-//        dd(Auth::user());
         $user = Auth::user();
         $items = Product::with(
             ['user:id,name',

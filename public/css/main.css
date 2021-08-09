@@ -235,6 +235,7 @@ p {
     display: none;
     background-color: white;
     position: absolute;
+    z-index: 2;
 }
 
 .reserve-form-container input {

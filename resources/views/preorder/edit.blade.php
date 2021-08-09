@@ -64,7 +64,7 @@
 
                     <div class="form-group">
                         <label for="group">Категория</label>
-                        <select name="category" id="category" class="form-control">
+                        <select name="category" id="category" class="category form-control">
                             <option value="{{$item->category->name}}">{{$item->category->name}}</option>
                         </select>
                     </div>

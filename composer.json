@@ -14,7 +14,8 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
         "phpoffice/phpspreadsheet": "^1.18",
-      "ext-simplexml": "*"
+      "ext-simplexml": "*",
+      "ext-json": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
