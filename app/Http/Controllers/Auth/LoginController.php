@@ -96,10 +96,8 @@ class LoginController extends Controller
         return $this->redirectTo;
     }
 
-
-    protected function checkGroup(\Adldap\Models\Model $user)
+    protected function checkGroup($user)
     {
-
         foreach (config('ldap.group') as $key => $group) {
             if ($user->inGroup($group, $recursive = true)) return $key;
         }
