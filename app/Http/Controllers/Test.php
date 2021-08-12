@@ -59,4 +59,5 @@ class Test extends Controller
         $cur = simplexml_load_file('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=' . $code);
         return $cur->currency->rate;
     }
+
 }

@@ -15,7 +15,12 @@ class EditController extends BaseController
 {
     public function index($id)
     {
-        $data['item'] = Product::query()->findOrFail($id);
+
+        $product = Product::query()->findOrFail($id);
+
+        if (!Auth::user()->admin() && !$product->owner()) return back();
+
+        $data['item'] = $product;
         $data['countries'] = Country::query()->toBase()->get();
         $data['groups'] = Goodsgroup::query()->toBase()->get();
         return view('preorder.edit', $data);
@@ -24,7 +29,7 @@ class EditController extends BaseController
     public function update(UpdateProductRequest $request, $id)
     {
         $product = Product::query()->findOrFail($id);
-        if ($product->user_id != Auth::user()->id) return back();
+        if (!Auth::user()->admin() && !$product->owner()) return back();
 
         if (isset($request->file)) {
             $photo = '';
@@ -55,7 +60,7 @@ class EditController extends BaseController
 //        dd($product);
         $product->save();
 
-        return  redirect()->route('main.index')->with('success', 'Успешно обновлено');
+        return redirect()->route('main.index')->with('success', 'Успешно обновлено');
 
     }
 }
