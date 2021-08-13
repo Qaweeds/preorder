@@ -1,4 +1,4 @@
-.w-45{
+.w-45 {
     width: 45% !important;
 }
 
@@ -8,12 +8,15 @@
     margin: 20px 0 60px;
     border-radius: 20px;
 }
-.form-block h4{
+
+.form-block h4 {
     margin-left: 10px;
 }
-.form-control{
+
+.form-control {
     padding: 0 0 0 5px;
 }
+
 .select-wrap {
     margin: 0 10px 10px;
     display: flex;
@@ -47,6 +50,14 @@
 .season-width {
     flex-basis: 15%;
 }
-.group-width{
+
+.group-width {
     flex-basis: 15%;
+}
+
+.block-header-wrap {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 11px;
+    align-items: baseline;
 }

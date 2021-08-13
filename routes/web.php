@@ -54,6 +54,10 @@ Route::group(['middleware' => 'admin'], function () {
         Route::get('deliverytimevalue', 'DeliveryTimeController@getValue');
         Route::post('deliverytimestore', 'DeliveryTimeController@store')->name('delivery_time.store');
 
+        Route::get('showsellpricetable', 'SellPriceController@showall')->name('sellprice.table');
+        Route::get('showselfpricetable', 'SelfPriceController@showall')->name('selfprice.table');
+        Route::get('showsdeliverytable', 'DeliveryTimeController@showall')->name('delivery.table');
+
 
     });
 

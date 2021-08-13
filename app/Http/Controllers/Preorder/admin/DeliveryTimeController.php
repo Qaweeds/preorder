@@ -26,4 +26,11 @@ class DeliveryTimeController extends Controller
 
         return redirect()->route('admin.index')->with('success', 'Успешно обновлено');
     }
+
+    public function showAll()
+    {
+        $table = DeliveryTime::makeTAble();
+
+        return view('preorder.admin.table', compact('table'));
+    }
 }

@@ -30,4 +30,12 @@ class SellPriceController extends Controller
 
         return redirect()->route('admin.index')->with('success', 'Успешно обновлено');
     }
+
+    public function showAll()
+    {
+        $table = SellPrice::makeTAble();
+
+        return view('preorder.admin.table', compact('table'));
+    }
+
 }

@@ -71,12 +71,18 @@ $(document).ready(function () {
         event.preventDefault();
         let data = $(this).closest('form').serializeArray();
         let obj = $(this);
+        let comment_button = obj.parents('.comments').prev('.admin-container').children('.admin-button-comments');
+        let number = comment_button.children('.comments-count').html();
+
         $.ajax({
             url: comment_route,
             data: data,
             success: function (response) {
                 obj.prev('textarea').val('');
                 obj.parents('.new-comment').next().prepend(newComment(user, data[1]['value']));
+                comment_button.click();
+                number++;
+                comment_button.children('.comments-count').html(number);
             },
             error: function (response) {
                 let message = '<span> Сообщение не должно быть пустым </span>';

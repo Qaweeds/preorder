@@ -8,7 +8,10 @@
         @include('layouts.include.result_message')
 
         <div class="form-block" id="selfprice-block">
-            <h4>Себестоимость</h4>
+            <div class="block-header-wrap">
+                <h4>Себестоимость</h4>
+                <a href="{{route('selfprice.table')}}">Таблица</a>
+            </div>
             <form action="{{route('selfprice.store')}}" method="post" id="selfprice-form">
                 @csrf
                 <div class="select-wrap">
@@ -61,7 +64,10 @@
         </div>
 
         <div class="form-block" id="sellprice-block">
-            <h4>Наценка</h4>
+            <div class="block-header-wrap">
+                <h4>Наценка</h4>
+                <a href="{{route('sellprice.table')}}">Таблица</a>
+            </div>
             <form action="{{route('sellprice.store')}}" method="post" id="sellprice-form">
                 @csrf
                 <div class="select-wrap">
@@ -114,7 +120,10 @@
         </div>
 
         <div class="form-block" id="delivery_time-block">
-            <h4>Время доставки</h4>
+            <div class="block-header-wrap">
+                <h4>Время доставки</h4>
+                <a href="{{route('delivery.table')}}">Таблица</a>
+            </div>
             <form action="{{route('delivery_time.store')}}" method="post" id="delivery_time-form">
                 @csrf
                 <div class="select-wrap">

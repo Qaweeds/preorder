@@ -1,0 +1,20 @@
+main {
+    padding: 20px;
+}
+
+table {
+    background: white;
+}
+
+th {
+    text-align: center;
+}
+
+th, td {
+    padding: 0 3px;
+    border: 1px solid green;
+}
+
+.row-separator {
+    border-top: 2px solid black;
+}
