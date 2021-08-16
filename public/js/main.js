@@ -38,7 +38,7 @@ $(document).ready(function () {
 
 
     $('.admin-button-comments').click(function () {
-        $(this).parent().next('.comments').toggle(600);
+        $(this).parent().next('.comments').toggle(600).children('.new-comment').css('display', 'block');
     });
     $('.admin-button-reserve').click(function () {
         $(this).next().slideToggle(200);
@@ -80,7 +80,8 @@ $(document).ready(function () {
             success: function (response) {
                 obj.prev('textarea').val('');
                 obj.parents('.new-comment').next().prepend(newComment(user, data[1]['value']));
-                comment_button.click();
+                obj.parents('.new-comment').css('display', 'none');
+                // comment_button.click();
                 number++;
                 comment_button.children('.comments-count').html(number);
             },
