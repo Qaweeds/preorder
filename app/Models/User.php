@@ -40,4 +40,9 @@ class User extends Authenticatable
     {
         return $this->role == 'Админ';
     }
+
+    public static function testUsers()
+    {
+        return self::query()->toBase()->where('id', '>', 900)->get(['id', 'name']);
+    }
 }

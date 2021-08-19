@@ -45,6 +45,9 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'admin'], function () {
     Route::namespace('Preorder\admin')->prefix('admin')->group(function () {
         Route::get('/', 'SetupController@index')->name('admin.index');
+        Route::post('/', 'SetupController@test')->name('admin.test');
+
+
         Route::get('/selfpricevalue', 'SelfPriceController@getSelfPriceValue');
         Route::post('/selfpricestore', 'SelfPriceController@store')->name('selfprice.store');
 

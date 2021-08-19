@@ -155,6 +155,30 @@
             </form>
         </div>
 
+
+        <div class="form-block" id="delivery_time-block">
+            <div class="block-header-wrap">
+                <h4>Тест</h4>
+            </div>
+            <form action="{{route('admin.test')}}" method="post" id="test-form">
+                @csrf
+                <div class="select-wrap">
+                    <div class="select-block w-45">
+                        <label for="loginAs">Войти как:</label>
+                        <select class="form-control" name="loginAs" id="loginAs">
+                            <option value="" disabled selected>-------</option>
+                            @foreach($testusers as $o)
+                                <option value="{{$o->id}}">{{$o->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="select-wrap">
+                    <input type="submit" class="btn btn-primary" value="Войти">
+                </div>
+            </form>
+        </div>
+
     </div>
 @endsection
 

@@ -126,8 +126,10 @@
                                     </span>
                                 @endif
                             </button>
-                            @if($item->owner() or $user->can_decide())
+                            @if($item->owner() or $user->admin())
                                 <a href="{{route('edit.index', $item->id)}}" class="btn btn-warning admin-button">Редактирование</a>
+                            @endif
+                            @if($item->owner() or $user->can_decide())
                                 <button name="{{$item->id}}" class="btn btn-success admin-button order-success">В Заказ</button>
                                 <button name="{{$item->id}}" class="btn btn-danger btn-success admin-button order-denied">Отказ</button>
                             @endif
