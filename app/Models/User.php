@@ -43,6 +43,6 @@ class User extends Authenticatable
 
     public static function testUsers()
     {
-        return self::query()->toBase()->where('id', '>', 900)->get(['id', 'name']);
+        return self::query()->toBase()->whereBetween('id', [993, 999])->get(['id', 'name']);
     }
 }
