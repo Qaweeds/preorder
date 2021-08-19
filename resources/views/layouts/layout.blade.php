@@ -24,7 +24,7 @@
                 <li><a href="{{route('create.index')}}" class="nav-link px-2 link-secondary">Создать</a></li>
             @endif
 
-{{--            <li><a href="{{route('logout')}}" class="nav-link px-2 link-secondary">Выйти</a></li>--}}
+            <li><a href="{{route('logout')}}" class="nav-link px-2 link-secondary">Выйти</a></li>
             <li>
                 <button class="btn filter-button">Фильтр</button>
             </li>
