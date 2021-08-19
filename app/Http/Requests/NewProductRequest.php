@@ -24,7 +24,7 @@ class NewProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'file' => 'max:3',
+            'file' => 'required|max:3',
             'file.*' => 'required',
             'group' => 'required',
             'category' => 'required',
@@ -42,7 +42,7 @@ class NewProductRequest extends FormRequest
         return [
             'file.max' => 'Не больще 3х фото',
             'file.*' => 'Требуется фото',
-            'channel' => "Выберите канал"
+            'channel.required' => "Выберите канал"
         ];
     }
 }
