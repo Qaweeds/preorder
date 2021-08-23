@@ -44,7 +44,7 @@ $(document).ready(function () {
     $('.admin-button-comments').click(function () {
         let range = 250;
         if ($(this).hasClass('open')) {
-            range = -150;
+            range = -250;
             $(this).removeClass('open');
         } else {
             $(this).addClass('open');
