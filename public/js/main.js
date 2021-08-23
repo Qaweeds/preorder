@@ -42,7 +42,7 @@ $(document).ready(function () {
     })
 
     $('.admin-button-comments').click(function () {
-        let range = 150;
+        let range = 250;
         if ($(this).hasClass('open')) {
             range = -150;
             $(this).removeClass('open');
