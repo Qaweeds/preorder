@@ -50,7 +50,7 @@ $(document).ready(function () {
             $(this).addClass('open');
         }
         $('html, body').animate({scrollTop: $(window).scrollTop() + range});
-        $(this).parent().next('.comments').toggle(600).children('.new-comment').css('display', 'block').find('textarea').focus();
+        $(this).parent().next('.comments').toggle(600).children('.new-comment').css('display', 'block');
     });
     $('.admin-button-reserve').click(function () {
         $(this).next().slideToggle(200);
