@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Preorder\Product;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 
@@ -25,6 +26,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Paginator::useBootstrap();
+
         view()->composer('layouts.include.filter_form', function ($view) {
             $view->with('seasons', Product::query()->distinct()->pluck('season'));
             $view->with('countries', Product::query()->distinct()->with('country:id,name')->get(['country_id']));

@@ -2,8 +2,6 @@
 @section('title')Предзаказ@endsection
 @section('content')
     <main>
-        <div id="alert"></div>
-        <div id="success"></div>
         <div class="container">
 
             @include('layouts.include.result_message')
@@ -90,9 +88,11 @@
 
                         <div class="rating-container">
                             <div class="rating-mark" id="item-mark-{{$item->id}}">
-                                <p>
+                                <p class="users-mark"></p>
+                                <p class="rating-total">
                                     @if(!is_null($item->rating)){{round($item->rating, 1)}} @endif
                                 </p>
+                                <button class="btn btn-light do-rating-button">Оценить</button>
                             </div>
                             <div class="form-container">
                                 <form class="rating-form" action="#">
@@ -154,8 +154,11 @@
                         </div>
                     </div>
                 </div>
-        @endforeach
-
+            @endforeach
+            <div class="pagination-wrap">
+                {{ $items->links() }}
+            </div>
+        </div>
 
     </main>
 

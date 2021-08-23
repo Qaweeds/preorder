@@ -21,9 +21,9 @@ class MainController extends BaseController
                 'reserve'
             ]);
         if ($user->can_see_all_prices()) {
-            $items = $items->get();
+            $items = $items->paginate(10);
         } else {
-            $items = $items->where('channel', 'LIKE BINARY', '%' . $user->role . '%')->get();
+            $items = $items->where('channel', 'LIKE BINARY', '%' . $user->role . '%')->paginate(10);
         }
 
         return view('preorder.index', compact('items', 'user'));
@@ -52,7 +52,7 @@ class MainController extends BaseController
         } else {
             $items = $items->where('channel', 'LIKE BINARY', '%' . $user->role . '%');
         }
-        $items = $items->get();
+        $items = $items->paginate(10);
         return view('preorder.index', compact('items', 'user'));
     }
 }

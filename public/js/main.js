@@ -7,10 +7,15 @@ $(document).ready(function () {
 
         let month = d.getMonth() + 1;
         let day = d.getDate();
+        let h = d.getHours();
+        let m = d.getMinutes();
 
-        return d.getFullYear() + '-' +
+
+        return (day < 10 ? '0' : '') + day + '-' +
             (month < 10 ? '0' : '') + month + '-' +
-            (day < 10 ? '0' : '') + day;
+            d.getFullYear() + ', ' +
+            h + ':' +
+            m;
     }
 
     function newComment(author, value) {
@@ -36,9 +41,16 @@ $(document).ready(function () {
 
     })
 
-
     $('.admin-button-comments').click(function () {
-        $(this).parent().next('.comments').toggle(600).children('.new-comment').css('display', 'block');
+        let range = 150;
+        if ($(this).hasClass('open')) {
+            range = -150;
+            $(this).removeClass('open');
+        } else {
+            $(this).addClass('open');
+        }
+        $('html, body').animate({scrollTop: $(window).scrollTop() + range});
+        $(this).parent().next('.comments').toggle(600).children('.new-comment').css('display', 'block').find('textarea').focus();
     });
     $('.admin-button-reserve').click(function () {
         $(this).next().slideToggle(200);
@@ -46,15 +58,18 @@ $(document).ready(function () {
     $('.filter-button').click(function () {
         $('.filter').slideToggle(200);
     });
-
     $('.vote-range').change(function () {
-        var data = $(this).closest('form').serializeArray();
+        $(this).parents('.form-container').prev('.rating-mark').find('.users-mark').html($(this).val());
+    });
+    $('.do-rating-button').click(function () {
+        $(this).prevAll('.users-mark').html('');
+        var data = $(this).parent().next('.form-container').find('form').serializeArray();
         $.ajax({
             url: vote_route,
             data: data,
             success: function (response) {
                 let item = '#item-mark-' + data[0]['value'];
-                $(item).find('p').html(response);
+                $(item).find('.rating-total').html(response);
             },
             error: function () {
                 let message = '<span> Вы уже голосовали </span>';

@@ -9,7 +9,13 @@
         <div class="container">
             <div class="col-md-12 col-lg-6 offset-lg-3">
 
-                @include('layouts.include.result_message')
+                @if(Session::has('success'))
+                    <div class="alert alert-success text-center card-wrap">
+                        <div class="alert-heading">
+                            {{ Session::get('success') }}
+                        </div>
+                    </div>
+                @endif
 
                 <form action="{{route('create.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
@@ -45,25 +51,38 @@
                     </div>
 
                     <div class="form-group">
+                        @error('group')
+                        <span class="error-msg">{{$message}} </span>
+                        @enderror
                         <label for="group">Подгруппа</label>
-                        <select name="group" id="group" class="form-control">
+                        <select name="group" id="group" class="form-control" required>
                             <option value="" disabled selected>Выберите Подгруппу</option>
                             @foreach($groups as $g)
-                                <option value="{{$g->id}}">{{$g->name}}</option>
+                                <option value="{{ $g->id}}" {{ (old("group") == $g->id ? "selected":"") }}>{{ $g->name }}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="form-group">
+                        @error('category')
+                        <span class="error-msg">{{$message}} </span>
+                        @enderror
                         <label for="group">Категория</label>
-                        <select id="category" name="category" class="form-control category">
-
+                        <select id="category" name="category" class="form-control category" required>
+                            @if(old('category'))
+                                <option value="{{old('category')}}" selected>{{old('category')}}</option>
+                            @else
+                                <option value="" selected disabled>Сначала Выберите Подгруппу</option>
+                            @endif
                         </select>
                     </div>
 
 
                     <div class="form-group">
-                        <p for="channel">Каналы сбыта</p>
+                        @error('channel')
+                        <span class="error-msg">{{$message}} </span>
+                        @enderror
+                        <p>Каналы сбыта</p>
                         <span class="mr-2 h4">CityBluzka</span><input name="channel[]" class="form-check-inline"
                                                                       value="CityBluzka" type="checkbox">
                         <span class="mr-2 h4">OLKO</span><input name="channel[]" class="form-check-inline" value="OLKO"
@@ -83,8 +102,13 @@
                     </div>
 
                     <div class="form-group">
+                        @error('price')
+                        <span class="error-msg">{{$message}} </span>
+                        @enderror
                         <label for="price">Цена закупки</label>
-                        <input id="price" name="price" type="number" step="0.01" class="form-control" placeholder="В валюте страны" required>
+                        <input id="price" name="price" type="number" step="0.01" class="form-control" placeholder="В валюте страны"
+                               value="{{old('price')}}"
+                               required>
                     </div>
 
                     <div class="form-group">
@@ -94,10 +118,12 @@
                     </div>
 
                     <div class="form-group mt-5">
+                        @error('file')
+                        <span class="error-msg">{{$message}} </span>
+                        @enderror
                         <p>Загрузить фотографию</p>
-                        <input id="file" name="file[]" type="file" multiple accept="image/*">
+                        <input id="file" name="file[]" type="file" multiple accept="image/*" required>
                     </div>
-
                     <div class="form-group">
                         <button type="submit" id="button" class="btn btn-primary">Создать</button>
                     </div>

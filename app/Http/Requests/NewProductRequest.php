@@ -42,7 +42,9 @@ class NewProductRequest extends FormRequest
         return [
             'file.max' => 'Не больще 3х фото',
             'file.*' => 'Требуется фото',
-            'channel.required' => "Выберите канал"
+            'channel.required' => "Выберите канал",
+            'category.required' => "Выберите категорию",
+            'group.required' => "Выберите подгруппу",
         ];
     }
 }
