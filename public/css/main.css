@@ -65,22 +65,6 @@ p {
     position: relative;
 }
 
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    max-width: inherit;
-    margin: 0 auto;
-
-    z-index: 2;
-    background: #f8fafc;
-}
-
-main {
-    margin-top: 156px;
-}
-
 .card-wrap {
     margin: 0 auto 20px;
     max-width: 450px;
